@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+      #div1 {width:200px;height: 200px;background: red;border: 1px solid#999;}
+    </style>
+    <script type="text/javascript" src="U05_03_ext.js"></script>
+    <script type="text/javascript">
+      function toChange(width_1 , height_1 , color_1)
+      {
+        var oDiv=document.getElementById('div1');
+        var chg1 = new ChangeColor(oDiv,width_1,height_1,color_1);
+        chg1.display();
+      }
+
+    </script>
+  </head>
+  <body>
+    <div id="div1" onmouseover="toChange('300px','300px','green')" onmouseout="toChange('200px','200px','red')">
+
+    </div>
+  </body>
+</html>

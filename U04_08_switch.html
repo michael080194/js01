@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>輪播圖 練習</title>
+        <meta name="description" content="Object Oriented">
+    </head>
+    <script>
+        var count1 = 1;
+        function slider(){
+             var obj1 = document.getElementById("d1");
+             var images = obj1.getElementsByTagName('img');
+             console.log(count1);
+             switch (count1) {
+                 case 1:
+                     images[0].src = './images/slider01.jpg';
+                     break;
+                 case 2:
+                     images[0].src = './images/slider02.jpg';
+                     break;
+                 case 3:
+                     images[0].src = './images/slider03.jpg';
+                     break;
+                 case 4:
+                     images[0].src = './images/slider04.jpg';
+                     count1=0;
+                     break;
+             }
+             count1 ++;
+        }
+
+    </script>
+    <style>
+         #d1{
+             width: 480px;
+             height: 320px;
+             background-color: white;
+         }
+    </style>
+    <body>
+        <div>
+          <input type="button" value="開始輪播" onclick="slider();">
+        </div>
+
+        <div id="d1">
+            <img  src="" style="display:block;"/>
+        </div>
+    </body>
+</html>

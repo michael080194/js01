@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Literal--字面量</title>
+    <script language="JavaScript">
+      var literal = {
+        add: function(){
+          alert("add");
+        },
+        del: function(){
+          alert("delete");
+        },
+        update: function(){
+          alert("update");
+        },
+        name: "zhangsan",
+        callLiteral: function(){
+          // 對於當前字面量對象的調用，要加this關鍵字
+          this.add();
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <input type="button" value="add" onclick="javascript:literal.add()">
+    <input type="button" value="delete" onclick="javascript:literal.del()">
+    <input type="button" value="update" onclick="literal.update()">
+    <input type="button" value="name" onclick="javascript:alert(literal.name)">
+    <input type="button" value="name" onclick="javascript:alert(literal["name"])">
+    <input type="button" value="caller" onclick="javascript:literal.callLiteral()">
+  </body>
+</html>

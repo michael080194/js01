@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>輪播圖 練習</title>
+        <meta name="description" content="Object Oriented">
+    </head>
+    <script>
+      var count1 = 1;
+      // var picArray = ['slider01','slider02','slider03','slider04'];
+      var picArray = [];
+      picArray.push("slider01");
+      picArray.push("slider02");
+      picArray.push("slider03");
+      picArray.push("slider04");
+      function slider(){
+           var obj1 = document.getElementById("d1");
+           var images = obj1.getElementsByTagName('img');
+           images[0].src = './images/' + picArray[count1-1] + '.jpg';
+           if (count1 == 4) {
+               count1 = 1;
+           } else {
+               count1++;
+           }
+      }
+
+    </script>
+    <style>
+         #d1{
+            width: 480px;
+            height: 320px;
+            background-color: white;
+         }
+    </style>
+    <body>
+        <div>
+          <input type="button" value="開始輪播" onclick="slider();">
+        </div>
+
+        <div id="d1">
+            <img  src="" style="display:block;"/>
+        </div>
+    </body>
+</html>

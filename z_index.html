@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>aaaa</title>
+
+    <script>
+    // 函式模式
+    var myFunction = function(){return 'foo';};
+    console.log(myFunction());
+
+    // 方法模式
+    var myObject = {myFunction:function(){return 'bar';}};
+    console.log(myObject.myFunction());
+
+    // 建構式模式
+    var Cody = function(){
+       this.living=true;
+       this.age=23;
+       this.gender='male';
+       this.getGender=function(){return this.gender;};
+    };
+    var cody = new Cody();
+    console.log(cody);
+
+    // apply() 與 call() 模式
+    var greet = {
+      runGreet:function(){
+        console.log(this.name,arguments[0],arguments[1]);
+      }
+    }
+
+    var cody = {name:'cody'};
+    var lisa = {name:'lisa'};
+    // 呼叫 runGreet函式,如同它位於 cody 物件內
+    greet.runGreet.call(cody , 'foo' , 'bar');
+    greet.runGreet.apply(lisa ,['foo' , 'bar']);
+
+    </script>
+
+
+  </head>
+  <body bgcolor="beige" text= "black" link="darkblue" vlink="honeydew">
+
+  </body>
+</html>

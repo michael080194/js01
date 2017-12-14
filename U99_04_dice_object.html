@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Object Oriented 教學</title>
+        <meta name="description" content="Object Oriented">
+        <script src="U99_04_dice_object.js"></script>
+    </head>
+    <script>
+
+        var dice1 = new myDice();
+        var dice2 = new myDice();
+        function playDice(){
+             dice1.play();
+             dice2.play();
+             console.log("Dice1="+dice1.num);
+             console.log("Dice2="+dice2.num);
+
+             var obj1 = document.getElementById("d1");
+             var images = obj1.getElementsByTagName('img');
+             images[0].style = "display:block;";
+             images[0].src = './images/dice' + dice1.num + '.png';
+
+             var obj2 = document.getElementById("d2");
+             var images = obj2.getElementsByTagName('img');
+             images[0].style = "display:block;";
+             images[0].src = './images/dice' + dice2.num + '.png';
+        }
+
+    </script>
+    <style>
+         #d1,#d2{
+             float: left;
+             font-size: 36px;
+             width: 200px;
+             height: 200px;
+             border: solid 2px black;
+             background-color: lightgreen;
+         }
+    </style>
+    <body>
+        <center>  <h1>Object Oriented 練習</h1>  </center>
+        <div>
+          <input type="button" value="擲骰子" onclick="playDice();">
+        </div>
+
+        <div id="d1">
+            <img  src="" style="display:none;"/>
+        </div>
+        <div id="d2">
+            <img  src="" style="display:none;"/>
+        </div>
+    </body>
+</html>

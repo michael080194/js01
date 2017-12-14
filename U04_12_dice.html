@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>U04_12_dice.html</title>
+        <meta name="description" content="Object Oriented">
+    </head>
+    <script>
+
+        function myDice(){
+            var n = Math.random();
+            n  = Math.floor(n * 6)+1;
+            return n;
+        }
+        function playDice(){
+             var dice1 = myDice();
+             var dice2 = myDice();
+             console.log("Dice1="+dice1);
+             console.log("Dice2="+dice2);
+
+             var obj1 = document.getElementById("d1");
+             var images = obj1.getElementsByTagName('img');
+             images[0].style = "display:block;";
+             images[0].src = './images/dice' + dice1 + '.png';
+
+             var obj2 = document.getElementById("d2");
+             var images = obj2.getElementsByTagName('img');
+             images[0].style = "display:block;";
+             images[0].src = './images/dice' + dice2 + '.png';
+        }
+
+    </script>
+    <style>
+         #d1,#d2{
+             float: left;
+             font-size: 36px;
+             width: 200px;
+             height: 200px;
+             border: solid 2px black;
+             background-color: lightgreen;
+             margin: 10px;
+         }
+    </style>
+    <body>
+        <center>  <h1>擲骰子 練習</h1>  </center>
+        <div>
+          <input type="button" value="擲骰子" onclick="playDice();">
+        </div>
+
+        <div id="d1">
+            <img  src="" style="display:none;"/>
+        </div>
+        <div id="d2">
+            <img  src="" style="display:none;"/>
+        </div>
+    </body>
+</html>

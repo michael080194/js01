@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>輪播圖 練習</title>
+        <meta name="description" content="Object Oriented">
+    </head>
+    <script>
+      var count1 = 1;
+      // var size = Object.keys(picObj).length; 求得 object  length
+      // picObj = {}; 清除 obj 資料
+      // var picObj = {1:"slider01",
+      //               2:"slider02",
+      //               3:"slider03",
+      //               4:"slider04"};
+      //
+      var picObj = {};
+      picObj[1] = "slider01"; // element[ yourKey ] = yourValue;
+      picObj[2] = "slider02";
+      picObj[3] = "slider03";
+      picObj[4] = "slider04";
+
+      function slider(){
+           var obj1 = document.getElementById("d1");
+           var images = obj1.getElementsByTagName('img');
+           images[0].src = './images/' + picObj[count1] + '.jpg';
+           if (count1 == 4) {
+               count1 = 1;
+           } else {
+               count1++;
+           }
+      }
+
+    </script>
+    <style>
+         #d1{
+            width: 480px;
+            height: 320px;
+            background-color: white;
+         }
+    </style>
+    <body>
+        <div>
+          <input type="button" value="開始輪播" onclick="slider();">
+        </div>
+
+        <div id="d1">
+            <img  src="" style="display:block;"/>
+        </div>
+    </body>
+</html>

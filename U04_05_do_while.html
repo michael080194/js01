@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="u04_02.css">
+    <script type="text/javascript">
+      function changColor(){
+        //用do { ... } while()循環要小心，循環體會至少執行1次
+        //做完迴圈內事情;再判斷條件是否成立;以決定是否繼續執行
+        var i = 1;
+        do {
+            var oDiv = document.getElementById('div'+i);
+            oDiv.style.background='yellow';
+            i = i + 1;
+        } while (i <= 8);
+
+        // alert(i); 將 i 設定為9 ; 會出現 error
+      }
+    </script>
+  </head>
+  <body>
+
+     <div id="div1">    </div>
+     <div id="div2">    </div>
+     <div id="div3">    </div>
+     <div id="div4">    </div>
+     <div id="div5">    </div>
+     <div id="div6">    </div>
+     <div id="div7">    </div>
+     <div id="div8">    </div>
+
+     <input type="button" value="更改顏色" onclick="changColor()" />
+  </body>
+</html>

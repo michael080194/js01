@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>aaaa</title>
+    <style type="text/css" media="screen">
+     </style>
+    <script>
+
+    window.onload = function(){
+         var canvas = document.getElementById("myCanvas");
+         var context = canvas.getContext("2d");
+         var imageObj = new Image();
+         imageObj.onload = function(){
+             context.drawImage(imageObj, 0, 0);
+             context.font = "12px Arial";
+             context.fillText("My TEXT!", 20, 560);
+         };
+         imageObj.src = "images/slider05.jpg";
+         autoDownLoad();
+    };
+
+      function autoDownLoad() {
+          var canvas1 = document.getElementById("myCanvas");
+          var link = document.createElement('a');
+              link.innerHTML = 'download image';
+          link.addEventListener('click', function(ev) {
+              link.href = canvas1.toDataURL();
+              link.download = "mypainting.png";
+          }, false);
+          document.body.appendChild(link);
+
+          var myVar = setInterval(function(){
+              link.click();
+          }, 50);
+
+          setInterval(function () {clearInterval(myVar)}, 60);
+      }
+
+    </script>
+  </head>
+  <body>
+     <canvas id="myCanvas" width="800px" height="640px">aaaaaa</canvas>
+  </body>
+</html>

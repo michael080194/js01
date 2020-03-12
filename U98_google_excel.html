@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>parse http 網址 教學</title>
+        <meta name="description" content="Object Oriented">
+    </head>
+    <script>
+
+      function parse1(){
+          var addr1 = document.getElementById("addr1");
+          if(addr1.value == ""){
+            alert("請輸入網址");
+            return false; 
+          }
+          
+          var str1 = addr1.value
+          var str2 = str1.split("/d/");
+          var str3 = str2[1].split("/edit");
+
+          var t1 = document.getElementById("t123");
+          t1.value= str3[0];
+          t1.style.display = 'block';
+          t1.select();
+          document.execCommand('copy'); 
+          t1.blur();                 
+
+      }
+
+      function clear1(){
+          var addr1 = document.getElementById("addr1");
+          addr1.value = "";     
+      }
+
+      // 在 console 直接下程式碼
+      function xxxx(){
+        //-----------------------------------------
+        var str1 = window.location.href
+        var str2 = str1.split("/d/");
+        var str3 = str2[1].split("/edit");
+        console.log(str3[0]);
+
+        // copy data to clipboard
+        var input = document.createElement('textarea');
+        input.innerHTML = str3[0];
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+      }
+
+    </script>
+
+    <style>
+        .flex {
+            display: flex;
+        }
+    </style>
+    <body>
+        <center>  <h1>解析Google SpreadSheet ID</h1>  </center>
+
+        <div class="flex">
+          <label for="addr1" style="font-size:24px">google SpreadSheet 網址:</label>
+          <input type="text" id="addr1" name="addr1" size="120" style="font-size:12px" >
+          <span></span>
+          <button  onclick="clear1();" style="margin-left:12px;font-size:20px;">清除</button>          
+          <span></span>
+          <button  onclick="parse1();"  style="margin-left:12px;font-size:20px;">解析ID</button>
+        </div>
+
+        <br>
+        <textarea rows="10" cols="150" id="t123" style="font-size:18px;color:blue;border:solid 2px orange;display:none;" >
+        </textarea>
+
+
+    </body>
+</html>

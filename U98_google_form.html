@@ -16,7 +16,8 @@
           }
           var cors = "https://cors-anywhere.herokuapp.com/";    
           var url_1 = addr1.value;  //"https://docs.google.com/forms/d/e/1FAIpQLSckxKAYGAeIbxbcl43IzUTworcqBjb2aOmJ18-TNiUWDpBGfA/viewform"
-
+          var loader = document.getElementById("loader");
+          loader.style.display = 'block';
           loadDoc(cors + url_1, myFunction1);            
 
       }
@@ -69,7 +70,9 @@
           t1.style.display = 'block';
           t1.select();
           document.execCommand('copy'); 
-          t1.blur();           
+          t1.blur();
+          var loader = document.getElementById("loader");
+          loader.style.display = 'none';
       }
 
       // 解析的另外一種寫法
@@ -142,24 +145,42 @@
           input.innerHTML = totalStr;
           document.body.appendChild(input);
           input.select();
-          document.execCommand('copy');        
-      }     
-         
+          document.execCommand('copy');
+      }
     </script>
 
     <style>
         .flex {
             display: flex;
         }
+        #loader {
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid #3498db;
+          width: 120px;
+          height: 120px;
+          -webkit-animation: spin 2s linear infinite; /* Safari */
+          animation: spin 2s linear infinite;
+        }
+        /* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
     </style>
     <body>
         <center>  <h1>解析google form 欄位名稱</h1>  </center>
-
+        <div id="loader" style="display:none;"></div>
         <div class="flex">
           <label for="addr1" style="font-size:24px">google form 網址:</label>
           <input type="text" id="addr1" name="addr1" size="120" style="font-size:12px" >
           <span></span>
-          <button  onclick="clear1();" style="margin-left:12px;font-size:20px;">清除</button>          
+          <button  onclick="clear1();" style="margin-left:12px;font-size:20px;">清除</button>
           <span></span>
           <button  onclick="parse1();"  style="margin-left:12px;font-size:20px;">解析欄位</button>
         </div>

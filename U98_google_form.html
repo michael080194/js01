@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>parse html 教學</title>
+        <meta name="description" content="Object Oriented">
+    </head>
+    <script>
+
+      function parse1(){
+          var addr1 = document.getElementById("addr1");
+          if(addr1.value == ""){
+            alert("請輸入網址");
+            return false; 
+          }
+          var cors = "https://cors-anywhere.herokuapp.com/";    
+          var url_1 = addr1.value;  //"https://docs.google.com/forms/d/e/1FAIpQLSckxKAYGAeIbxbcl43IzUTworcqBjb2aOmJ18-TNiUWDpBGfA/viewform"
+
+          loadDoc(cors + url_1, myFunction1);            
+
+      }
+
+      function clear1(){
+          var addr1 = document.getElementById("addr1");
+          addr1.value = "";     
+      }
+
+      function loadDoc(url, cFunction) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            cFunction(this);
+          }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+      }
+
+      // (使用 call back function)
+      function myFunction1(xhttp) {
+          var input = document.createElement('kyc_textarea');
+          input.innerHTML = xhttp.responseText;
+          document.body.appendChild(input);
+          var kyc_textarea = document.querySelectorAll('kyc_textarea');
+          var form1 = kyc_textarea[0].getElementsByTagName('form');
+
+          var str1 = ""
+          str1 += "form action \r\n";
+          str1 += form1[0].action + "\r\n";
+          str1 += "*********************\r\n\r\n";            
+          var totalStr = str1;     // get form action href
+
+          var input1 = kyc_textarea[0].getElementsByTagName('input');
+
+          for (i=0; i<input1.length; i++) {
+            if(input1[i].type != "hidden"){
+                str1 = ""
+                str1 += input1[i].getAttribute('aria-label') + "\r\n";
+                str1 += input1[i].name+ "\r\n";
+                str1 += "*********************\r\n\r\n";
+                totalStr += str1;
+            }
+          }
+          input.remove();
+          var t1 = document.getElementById("t123");
+          t1.value= totalStr;
+          t1.style.display = 'block';
+          t1.select();
+          document.execCommand('copy'); 
+          t1.blur();           
+      }
+
+      // 解析的另外一種寫法
+      function makeHttpObject() {
+        try {return new XMLHttpRequest();}
+        catch (error) {}
+        try {return new ActiveXObject("Msxml2.XMLHTTP");}
+        catch (error) {}
+        try {return new ActiveXObject("Microsoft.XMLHTTP");}
+        catch (error) {}
+
+        throw new Error("Could not create HTTP request object.");
+      }
+
+      function parse2(){
+          var addr1 = document.getElementById("addr1");
+          if(addr1.value == ""){
+            alert("請輸入網址");
+            return false; 
+          }
+          var cors = "https://cors-anywhere.herokuapp.com/";    
+          var url_1 = addr1.value;  //"ht
+
+          var request = makeHttpObject();
+          request.open("GET", cors + url_1 , true);
+          request.send(null);
+          request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200)
+              // console.log(request.responseText);
+              var input = document.createElement('kyc_textarea');
+              input.innerHTML = request.responseText;
+              document.body.appendChild(input);
+              var kyc_textarea = document.querySelectorAll('kyc_textarea');
+              // alert(kyc_textarea.length);
+              var input1 = kyc_textarea[0].getElementsByTagName('input');
+              // alert(input1.length);
+              for (i=0; i<input1.length; i++) {
+              if(input1[i].type != "hidden"){
+                  var str1 = ""
+                  str1 += input1[i].getAttribute('aria-label') + "\r\n";
+                  str1 += input1[i].name+ "\r\n";
+                  str1 += "*******\r\n";
+                  console.log(str1);
+                  // totalStr += str1;
+              }
+              }
+          }; 
+      }   
+
+      // 在 console 直接下 程式碼
+      function xxx(){
+          var form1 = document.querySelectorAll('form');
+          var input1 = form1[0].getElementsByTagName('input');
+          console.log("form action\r\n" + form1[0].action + "\r\n" );
+          var totalStr = "";
+          for (i=0; i<input1.length; i++) {
+           if(input1[i].type != "hidden"){
+              var str1 = ""
+              str1 += input1[i].getAttribute('aria-label') + "\r\n";
+              str1 += input1[i].name+ "\r\n";
+              str1 += "*******\r\n";
+              console.log(str1);
+              totalStr += str1;
+           }
+          }
+          totalStr += "----------\r\n";
+          totalStr += form1[0].action;
+          // copy action data to clipboard
+          var input = document.createElement('textarea');
+          input.innerHTML = totalStr;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');        
+      }     
+         
+    </script>
+
+    <style>
+        .flex {
+            display: flex;
+        }
+    </style>
+    <body>
+        <center>  <h1>解析google form 欄位名稱</h1>  </center>
+
+        <div class="flex">
+          <label for="addr1" style="font-size:24px">google form 網址:</label>
+          <input type="text" id="addr1" name="addr1" size="120" style="font-size:12px" >
+          <span></span>
+          <button  onclick="clear1();" style="margin-left:12px;font-size:20px;">清除</button>          
+          <span></span>
+          <button  onclick="parse1();"  style="margin-left:12px;font-size:20px;">解析欄位</button>
+        </div>
+
+        <br>
+        <textarea rows="40" cols="150" id="t123" style="font-size:18px;color:blue;border:solid 2px orange;display:none;" >
+        </textarea>
+
+
+    </body>
+</html>
